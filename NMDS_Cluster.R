@@ -6,6 +6,7 @@ library("grid")
 library("ggforce")
 library("gridExtra")
 
+###NCyc######
 ##Load in data
 Heatmap_NCyc <- read.csv("/users/andrewpilat/Documents/Honors/Data/NCyc/Heatmap_NCyc.csv")
 
@@ -29,16 +30,43 @@ Ncyc_NMDS_Run <- metaMDS(NMDS_Ncyc, k =2, distance = "bray", autotransform = FAL
 ##Dataframe for ggplot. This one pulls the NMDS data
 Ncyc_NMDS_Run.sites <- as.data.frame(scores(Ncyc_NMDS_Run, display = "species")) #save NMDS results into dataframe
 Ncyc_NMDS_Run.sites <- cbind(Ncyc_NMDS_Run.sites, Locations = rownames(Ncyc_NMDS_Run.sites))
-Ncyc_NMDS_Run.sites <- cbind(Ncyc_NMDS_Run.sites, Clusters = c(rep("Antarctica", 3), rep("Soil", 9), rep("Antarctica", 1), rep("Pond", 4), rep("Soil", 1)))
+Ncyc_NMDS_Run.sites <- cbind(Ncyc_NMDS_Run.sites, Clusters = c(rep("Antarctica", 3), rep("Soil", 10), rep("Antarctica", 1), rep("Pond", 4), rep("Soil", 1)))
 #add grouping variable of cluster grouping to dataframe
 
 
 ##GGplot
 tiff("NCyc_Clustering.tiff", units = "in", width =10, height=10, res=300)
-ggplot(Ncyc_NMDS_Run.sites, aes(x=NMDS1, y=NMDS2, size = 1, color = Clusters))+coord_cartesian(xlim=c(-1.5,1.56), ylim=c(-1.5,1.5))+ #sets up the plot
+ggplot(Ncyc_NMDS_Run.sites, aes(x=NMDS1, y=NMDS2, size = 1, color = Clusters))+coord_cartesian(xlim=c(-1.7,1.7), ylim=c(-1.7,1.7))+ #sets up the plot
   geom_point()+scale_x_continuous(labels = scales::number_format(accuracy = 0.1))+scale_y_continuous(labels = scales::number_format(accuracy = 0.1))+
   geom_mark_ellipse(aes(group= Clusters), fill = NA, alpha = 0.2, size = 0.8)+
   theme_classic()+ geom_vline(xintercept = 0, linetype = "dashed", color = "black")+ 
+  geom_hline(yintercept = 0, linetype = "dashed", color = "black") +
+  theme(panel.background = element_rect(fill = NA, colour = "black", size = 1, linetype = "solid"))+
+  theme(legend.position = "none")+
+  theme(axis.text = element_text(size = 16),
+        axis.title = element_text(size = 18))
+dev.off()
+
+####Genera#####
+Genera_Single_Sheet <- read.csv("/users/andrewpilat/Documents/Honors/Kraken Spreadsheets/Genera_for_NMDS.csv")
+rownames(Genera_Single_Sheet) <- Genera_Single_Sheet[,1]
+Genera_Single_Sheet <- Genera_Single_Sheet[,-1]
+
+##tiff("Scree_plot.tiff", units = "in", width =10, height=10, res=300)
+##NMDS.scree(Genera_Single_Sheet)
+##dev.off()
+
+Taxa_NMDS_Run <- metaMDS(Genera_Single_Sheet, k =2, distance = "bray", autotransform = FALSE)
+
+##Dataframe for ggplot. This one pulls the NMDS data
+Taxa_NMDS_Run.sites <- as.data.frame(scores(Taxa_NMDS_Run, display = "species")) #save NMDS results into dataframe
+Taxa_NMDS_Run.sites <- cbind(Taxa_NMDS_Run.sites, Locations = rownames(Taxa_NMDS_Run.sites))
+Taxa_NMDS_Run.sites <- cbind(Taxa_NMDS_Run.sites, Clusters = c(rep("Antarctica", 3), rep("Soil", 10), rep("Pond", 5), rep("Compost", 1)))
+
+tiff("Taxa_Clustering.tiff", units = "in", width =10, height=10, res=300)
+ggplot(Taxa_NMDS_Run.sites, aes(x=NMDS1, y=NMDS2, size = 1, color = Clusters))+coord_cartesian(xlim=c(-3.5,3.5), ylim=c(-1,1))+ #sets up the plot
+  geom_point()+scale_x_continuous(labels = scales::number_format(accuracy = 0.1))+scale_y_continuous(labels = scales::number_format(accuracy = 0.1))+
+  geom_mark_ellipse(aes(group= Clusters), fill = NA, alpha = 0.2, size = 0.8)+theme_classic()+ geom_vline(xintercept = 0, linetype = "dashed", color = "black")+ 
   geom_hline(yintercept = 0, linetype = "dashed", color = "black") +
   theme(panel.background = element_rect(fill = NA, colour = "black", size = 1, linetype = "solid"))+
   theme(legend.position = "none")+

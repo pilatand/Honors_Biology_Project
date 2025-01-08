@@ -11,7 +11,7 @@ ggplot(Flux_NCyc)+geom_point(aes(x= norB, y = Flux_Rate, color = Real_Names), si
   theme(axis.text = element_text(size = 16),
         axis.title = element_text(size = 18))+
   labs(
-     x = "norB",
+     x = "Relative norB Abundance",
      y = expression("N2O Flux (µg hr"^-1 ~ "m"^-2 ~")"),
     color = "Sites")
 dev.off()

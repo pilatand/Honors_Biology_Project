@@ -31,7 +31,7 @@ Correlation_Matrix_Pond2021 <- read.csv("/Users/andrewpilat/Documents/Honors/Dat
 rownames(Correlation_Matrix_Pond2021) <- Correlation_Matrix_Pond2021$X
 Correlation_Matrix_Pond2021 <- Correlation_Matrix_Pond2021[,-1]
 
-Actual_Matrix_Pond2021 <- Actual_Matrix_Pond2022[1:7,]
+Actual_Matrix_Pond2021 <- Correlation_Matrix_Pond2021[1:7,]
 Actual_Matrix_Pond2021 <- as.matrix(Actual_Matrix_Pond2021)
 
 
@@ -67,11 +67,11 @@ Genes_Metadata <- as.matrix(Genes_Metadata)
 boxplot_anno_Genes <- HeatmapAnnotation(
   Abundance = anno_boxplot(
     Genes_Metadata, width = unit(3, "cm"),
-    rotation = 90
+    rotation = 90, axis_param = list(gp = gpar(fontsize = 10))
   ),
   name = "Abundance",
   annotation_name_side = "left",
-  annotation_name_gp = gpar(fontsize = 10)
+  annotation_name_gp = gpar(fontsize = 12)
 )
 
 
@@ -98,8 +98,8 @@ Kokosing_annotation <- HeatmapAnnotation(which = "row", Koko_Meta = anno_boxplot
 Pond2021_annotation <- HeatmapAnnotation(which = "row", Koko_Meta = anno_boxplot(Pond2021_Chemistry, na.rm = TRUE, width = unit(3, "cm"),
                                  rotation = 45, axis = FALSE), annotation_name_gp = gpar(col = "white", fontsize = 0))
 
-Pond2022_annotation <- HeatmapAnnotation(which = "row", Concentration = anno_boxplot(Kokosing_Chemistry, na.rm = TRUE, width = unit(3, "cm"),
-                         rotation = 45), annotation_name_gp = gpar(fontsize = 10), annotation_name_side = "bottom")
+Pond2022_annotation <- HeatmapAnnotation(which = "row", Concentration = anno_boxplot(Pond2022_Chemistry, na.rm = TRUE, width = unit(3, "cm"),
+                         rotation = 45, axis_param = list(gp = gpar(fontsize = 10))), annotation_name_gp = gpar(fontsize = 12), annotation_name_side = "bottom")
 
 col_fun= colorRamp2(c(-1, 0, 1), c("blue", "#76d587", "#ffff00"))
 
@@ -112,16 +112,17 @@ ht1 = Heatmap(Actual_Matrix_Kokosing, name = "Spearman", col = col_fun, row_titl
 ht2 = Heatmap(Actual_Matrix_Pond2021, name = "Spearman Cor.", col = col_fun, row_title = "Ponds 2021",
               row_order = rownames(Actual_Matrix_Pond2021), column_order = colnames(Actual_Matrix_Pond2021), row_names_side = "left",
               column_names_rot = 45, column_split = column_split, row_names_gp = gpar(fontsize = 10),
-              column_names_gp = gpar(fontsize = 12), right_annotation = Pond2021_annotation)
-ht3 = Heatmap(Actual_Matrix_Pond2022, name = "Spearmans", col = col_fun, row_title = "Ponds 2022",
+              column_names_gp = gpar(fontsize = 10), right_annotation = Pond2021_annotation)
+ht3 = Heatmap(Actual_Matrix_Pond2022, name = "Spearmans", col = col_fun, row_title = "Ponds 2022", 
+              column_title = "N Cycle Genes",                                                                                                
               row_order = rownames(Actual_Matrix_Pond2022), column_order = colnames(Actual_Matrix_Pond2022), row_names_side = "left",
               column_names_rot = 45, show_heatmap_legend = FALSE, column_split = column_split,
-              row_names_gp = gpar(fontsize = 10),
-              column_names_gp = gpar(fontsize = 12), right_annotation = Pond2022_annotation)  
+              row_names_gp = gpar(fontsize = 10), 
+              column_names_gp = gpar(fontsize = 10), right_annotation = Pond2022_annotation)  
   
 ht_list = ht1 %v% ht2 %v% ht3
 
-tiff("Pond_Kokosing_Spearman_Heatmaps.tiff", units = "in", width =6, height=6, res=300)
+tiff("Pond_Kokosing_Spearman_Heatmaps.tiff", units = "in", width =6, height=7, res=300)
 draw(ht_list)
 dev.off()
 
