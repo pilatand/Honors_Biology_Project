@@ -1,5 +1,6 @@
 library(ComplexHeatmap) ##From Bioconductor
 library(circlize)
+library(NSM3)
 
 ##Read in the Master Spreadsheet
 Master_NCYC <- read.csv("/users/andrewpilat/Documents/Honors/Data/NCyc/Master_NCYC.csv")
@@ -47,12 +48,42 @@ Heatmap_matrix <- as.matrix(Heatmap_NCyc)
 
 col_fun= colorRamp2(c(0, 250, 600), c("blue", "#76d587", "#ffff00"))
 
-row_split <- c(rep(1,1), rep(2, 3), rep(3,1), rep(4, 4), rep(5, 1), rep(6,1))
-column_split <- c(rep("Antarctica Lakes", 3), rep("Wetlands", 6), rep("Agricultural Soil", 4), rep("River", 1), rep("Ponds", 4), rep("Compost", 1))
+row_split <- c(rep(3,1), rep(4, 3), rep(1,1), rep(2, 4), rep(5, 1), rep(6,1))
+column_split <- c(rep(1, 3), rep(4, 6), rep(5, 3), rep(8,1), rep(3, 1), rep(2, 4), rep(7, 1))
 
-tiff("Median Heatmap.tiff", units = "in", width =16, height=7, res=300)
+tiff("Median_Heatmap_Remake.tiff", units = "in", width =20.5, height=9, res=300)
 Heatmap(Heatmap_matrix, col = col_fun, row_order = rownames(Heatmap_matrix), column_order = colnames(Heatmap_matrix), 
-        name = "Rel. Abundance", column_names_rot = 45, row_split= row_split, column_split = column_split)
+        name = "Rel. Abundance", column_names_rot = 45, row_split= row_split, column_split = column_split, column_title = c("Antarctic Lakes", "Ohio Ponds", "Ohio River", "Ohio Wetlands", "Agricultural Soil", "Compost", 
+                                                                                                                             "Trail Soil"),
+      heatmap_legend_param = list(title = "Rel. Abundance", legend_height = unit(4, "cm"), legend_width = unit(4, "cm") ))
 dev.off()
+help("Legend")
+###Statistics###
+Master <- read.csv("/users/andrewpilat/Documents/Honors/Data/NCyc/Soil_versus_water.csv")
+
+Soil <- Master[,12:22]
+Soil <- Soil[1:47,]
+
+help("wilcox.test")
+wilcox.test(Master$nirB_Water, Master$nirB_Soil, alternative = "less", paired = FALSE) ## p < 0.0001
+wilcox.test(Master$nirS_Water, Master$nirS_Soil, alternative = "less", paired = FALSE) ## p < 0.0001
+wilcox.test(Master$nirK_Water, Master$nirK_Soil, alternative = "less", paired = FALSE) ## p < 0.0001
+wilcox.test(Master$norB_Water, Master$norB_Soil, alternative = "less", paired = FALSE) ## p < 0.0001
+wilcox.test(Master$nosZ_Water, Soil$nosZ_Soil, alternative = "two.sided", paired = FALSE) ## p < 0.0001
+
+
+
+
+wilcox.test(Master$hzsA_Water, Soil$hzsA_Soil, alternative = "greater", paired = FALSE)
+boxplot(Master$)
+
+kruskal.test(Master$nirB~Master$Median_Name) ## p < 0.0001
+pSDCFlig(x =Master$nirB, g=Master$Groups) 
+help("pSDCFlig")
+
+kruskal.test(Master$nirS~Master$Median_Name) ## p < 0.0001
+
+pSDCFlig(x =Master$nirS, g=Master$Groups)
+
 
 

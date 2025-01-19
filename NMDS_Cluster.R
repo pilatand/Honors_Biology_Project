@@ -74,4 +74,36 @@ ggplot(Taxa_NMDS_Run.sites, aes(x=NMDS1, y=NMDS2, size = 1, color = Clusters))+c
         axis.title = element_text(size = 18))
 dev.off()
 
+###Looking at all sites NCyc
+
+All_sites_Ncyc <- read.csv("/Users/andrewpilat/Documents/Honors/Data/NCyc/Full_Gene_Profile.csv")
+
+rownames(All_sites_Ncyc) <- All_sites_Ncyc$Admera_ID
+All_sites_Ncyc <- All_sites_Ncyc[,-1]
+
+tiff("All_Genes_Scree.tiff", units = "in", width =10, height=10, res=300)
+NMDS.scree(All_sites_Ncyc)
+dev.off()
+
+Ncyc_All_Genes <- metaMDS(All_sites_Ncyc, k =2, distance = "bray", autotransform = FALSE)
+
+Ncyc_All_Genes  <- as.data.frame(scores(Ncyc_All_Genes, display = "species")) #save NMDS results into dataframe
+
+site_Names <- read.csv("/Users/andrewpilat/Documents/Honors/Data/NCyc/Names_Column.csv")
+
+
+Ncyc_All_Genes <- cbind(Ncyc_All_Genes, Locations = site_Names$Median_Name)
+
+
+tiff("NCyc_Clustering_All_Sites.tiff", units = "in", width =10, height=10, res=300)
+ggplot(Ncyc_All_Genes, aes(x=NMDS1, y=NMDS2, size = 1, color = Locations))+coord_cartesian(xlim=c(-3.5,3.5), ylim=c(-1,1))+ #sets up the plot
+  geom_point()+scale_x_continuous(labels = scales::number_format(accuracy = 0.1))+scale_y_continuous(labels = scales::number_format(accuracy = 0.1))+
+  theme_classic()+ geom_vline(xintercept = 0, linetype = "dashed", color = "black")+ 
+  geom_hline(yintercept = 0, linetype = "dashed", color = "black") +
+  theme(panel.background = element_rect(fill = NA, colour = "black", size = 1, linetype = "solid"))+
+  theme(axis.text = element_text(size = 16),
+        axis.title = element_text(size = 18))
+dev.off()
+
+##Didn't work##
 

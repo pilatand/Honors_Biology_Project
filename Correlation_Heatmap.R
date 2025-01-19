@@ -8,12 +8,60 @@ Kokosing_NCyc <- read.csv("/Users/andrewpilat/Documents/Honors/Data/NCyc/Kokosin
 Cor_Kokosing <- Kokosing_NCyc[,c(6:23)]
 
 correlation <- cor(Cor_Kokosing, method = "spearman")
+
 write.csv(correlation, file = "/Users/andrewpilat/Documents/Honors/Data/NCyc/Kokosing_Correlation_Matrix.csv")
+
+
+##p-values
+#nifH
+cor.test(Cor_Kokosing$nifH, Cor_Kokosing$Ammonia, method = "spearman")
+cor.test(Cor_Kokosing$nifH, Cor_Kokosing$Nitrate, method = "spearman")
+cor.test(Cor_Kokosing$nifH, Cor_Kokosing$Phosphate, method = "spearman")
+cor.test(Cor_Kokosing$nifH, Cor_Kokosing$DO, method = "spearman")
+
+#nirB
+cor.test(Cor_Kokosing$nirB, Cor_Kokosing$Ammonia, method = "spearman")
+cor.test(Cor_Kokosing$nirB, Cor_Kokosing$Nitrate, method = "spearman")
+cor.test(Cor_Kokosing$nirB, Cor_Kokosing$Phosphate, method = "spearman")
+cor.test(Cor_Kokosing$nirB, Cor_Kokosing$DO, method = "spearman")
+
+#nirS
+cor.test(Cor_Kokosing$nirS, Cor_Kokosing$Ammonia, method = "spearman")
+cor.test(Cor_Kokosing$nirS, Cor_Kokosing$Nitrate, method = "spearman")
+cor.test(Cor_Kokosing$nirS, Cor_Kokosing$Phosphate, method = "spearman")
+cor.test(Cor_Kokosing$nirS, Cor_Kokosing$DO, method = "spearman")
+
+#nirK
+cor.test(Cor_Kokosing$nirK, Cor_Kokosing$Ammonia, method = "spearman")
+cor.test(Cor_Kokosing$nirK, Cor_Kokosing$Nitrate, method = "spearman")
+cor.test(Cor_Kokosing$nirK, Cor_Kokosing$Phosphate, method = "spearman")
+cor.test(Cor_Kokosing$nirK, Cor_Kokosing$DO, method = "spearman")
+
+#norB
+cor.test(Cor_Kokosing$norB, Cor_Kokosing$Ammonia, method = "spearman")
+cor.test(Cor_Kokosing$norB, Cor_Kokosing$Nitrate, method = "spearman")
+cor.test(Cor_Kokosing$norB, Cor_Kokosing$Phosphate, method = "spearman")
+cor.test(Cor_Kokosing$norB, Cor_Kokosing$DO, method = "spearman")
+
+#nosZ
+cor.test(Cor_Kokosing$nosZ, Cor_Kokosing$Ammonia, method = "spearman")
+cor.test(Cor_Kokosing$nosZ, Cor_Kokosing$Nitrate, method = "spearman")
+cor.test(Cor_Kokosing$nosZ, Cor_Kokosing$Phosphate, method = "spearman")
+cor.test(Cor_Kokosing$nosZ, Cor_Kokosing$DO, method = "spearman")
+
+#ureA
+cor.test(Cor_Kokosing$ureA, Cor_Kokosing$Ammonia, method = "spearman")
+cor.test(Cor_Kokosing$ureA, Cor_Kokosing$Nitrate, method = "spearman")
+cor.test(Cor_Kokosing$ureA, Cor_Kokosing$Phosphate, method = "spearman")
+cor.test(Cor_Kokosing$ureA, Cor_Kokosing$DO, method = "spearman")
+
 
 ##Data are sorted
 Correlation_Matrix_Kokosing <- read.csv("/Users/andrewpilat/Documents/Honors/Data/NCyc/Kokosing_Correlation_Matrix_Edited.csv")
+Correlation_Matrix_Kokosing <- Correlation_Matrix_Kokosing[1:4,]
 rownames(Correlation_Matrix_Kokosing) <- Correlation_Matrix_Kokosing$X
 Correlation_Matrix_Kokosing <- Correlation_Matrix_Kokosing[,-1]
+
 
 Actual_Matrix_Kokosing <- as.matrix(Correlation_Matrix_Kokosing )
 
@@ -26,12 +74,57 @@ Cor_Pond_2021 <- Pond_2021_NCyc[,c(6:24)]
 correlation <- cor(Cor_Pond_2021, method = "spearman")
 write.csv(correlation, file = "/Users/andrewpilat/Documents/Honors/Data/NCyc/Pond2021_Correlation_Matrix.csv")
 
+##p-values
+#nifH
+cor.test(Cor_Pond_2021$nifH, Cor_Pond_2021$NH4, method = "spearman")
+cor.test(Cor_Pond_2021$nifH, Cor_Pond_2021$NO3, method = "spearman")
+cor.test(Cor_Pond_2021$nifH, Cor_Pond_2021$PO4, method = "spearman")
+cor.test(Cor_Pond_2021$nifH, Cor_Pond_2021$DO, method = "spearman")
+
+#nirB
+cor.test(Cor_Pond_2021$nirB, Cor_Pond_2021$NH4, method = "spearman")
+cor.test(Cor_Pond_2021$nirB, Cor_Pond_2021$NO3, method = "spearman")
+cor.test(Cor_Pond_2021$nirB, Cor_Pond_2021$PO4, method = "spearman")
+cor.test(Cor_Pond_2021$nirB, Cor_Pond_2021$DO, method = "spearman")
+
+#nirS
+cor.test(Cor_Pond_2021$nirS, Cor_Pond_2021$NH4, method = "spearman")
+cor.test(Cor_Pond_2021$nirS, Cor_Pond_2021$NO3, method = "spearman")
+cor.test(Cor_Pond_2021$nirS, Cor_Pond_2021$PO4, method = "spearman")
+cor.test(Cor_Pond_2021$nirS, Cor_Pond_2021$DO, method = "spearman")
+
+#nirK
+cor.test(Cor_Pond_2021$nirK, Cor_Pond_2021$NH4, method = "spearman")
+cor.test(Cor_Pond_2021$nirK, Cor_Pond_2021$NO3, method = "spearman")
+cor.test(Cor_Pond_2021$nirK, Cor_Pond_2021$PO4, method = "spearman")
+cor.test(Cor_Pond_2021$nirK, Cor_Pond_2021$DO, method = "spearman")
+
+#norB
+cor.test(Cor_Pond_2021$norB, Cor_Pond_2021$NH4, method = "spearman")
+cor.test(Cor_Pond_2021$norB, Cor_Pond_2021$NO3, method = "spearman")
+cor.test(Cor_Pond_2021$norB, Cor_Pond_2021$PO4, method = "spearman")
+cor.test(Cor_Pond_2021$norB, Cor_Pond_2021$DO, method = "spearman")
+
+#nosZ
+cor.test(Cor_Pond_2021$nosZ, Cor_Pond_2021$NH4, method = "spearman")
+cor.test(Cor_Pond_2021$nosZ, Cor_Pond_2021$NO3, method = "spearman")
+cor.test(Cor_Pond_2021$nosZ, Cor_Pond_2021$PO4, method = "spearman")
+cor.test(Cor_Pond_2021$nosZ, Cor_Pond_2021$DO, method = "spearman")
+
+#ureA
+cor.test(Cor_Pond_2021$ureA, Cor_Pond_2021$NH4, method = "spearman")
+cor.test(Cor_Pond_2021$ureA, Cor_Pond_2021$NO3, method = "spearman")
+cor.test(Cor_Pond_2021$ureA, Cor_Pond_2021$PO4, method = "spearman")
+cor.test(Cor_Pond_2021$ureA, Cor_Pond_2021$DO, method = "spearman")
+
+
+
 ##Data are sorted
 Correlation_Matrix_Pond2021 <- read.csv("/Users/andrewpilat/Documents/Honors/Data/NCyc/Pond2021_Correlation_Matrix_Edited.csv")
 rownames(Correlation_Matrix_Pond2021) <- Correlation_Matrix_Pond2021$X
 Correlation_Matrix_Pond2021 <- Correlation_Matrix_Pond2021[,-1]
 
-Actual_Matrix_Pond2021 <- Correlation_Matrix_Pond2021[1:7,]
+Actual_Matrix_Pond2021 <- Correlation_Matrix_Pond2021[1:4,]
 Actual_Matrix_Pond2021 <- as.matrix(Actual_Matrix_Pond2021)
 
 
@@ -45,12 +138,56 @@ Cor_Pond_2022 <- Pond_2022_NCyc[,c(6:24)]
 correlation <- cor(Cor_Pond_2022, method = "spearman", use = "complete.obs")
 write.csv(correlation, file = "/Users/andrewpilat/Documents/Honors/Data/NCyc/Pond2022_Correlation_Matrix.csv")
 
+
+##p-values
+#nifH
+cor.test(Cor_Pond_2022$nifH, Cor_Pond_2022$NH4, method = "spearman")
+cor.test(Cor_Pond_2022$nifH, Cor_Pond_2022$NO3, method = "spearman")
+cor.test(Cor_Pond_2022$nifH, Cor_Pond_2022$PO4, method = "spearman")
+cor.test(Cor_Pond_2022$nifH, Cor_Pond_2022$DO, method = "spearman")
+
+#nirB
+cor.test(Cor_Pond_2022$nirB, Cor_Pond_2022$NH4, method = "spearman")
+cor.test(Cor_Pond_2022$nirB, Cor_Pond_2022$NO3, method = "spearman")
+cor.test(Cor_Pond_2022$nirB, Cor_Pond_2022$PO4, method = "spearman")
+cor.test(Cor_Pond_2022$nirB, Cor_Pond_2022$DO, method = "spearman")
+
+#nirS
+cor.test(Cor_Pond_2022$nirS, Cor_Pond_2022$NH4, method = "spearman")
+cor.test(Cor_Pond_2022$nirS, Cor_Pond_2022$NO3, method = "spearman")
+cor.test(Cor_Pond_2022$nirS, Cor_Pond_2022$PO4, method = "spearman")
+cor.test(Cor_Pond_2022$nirS, Cor_Pond_2022$DO, method = "spearman")
+
+#nirK
+cor.test(Cor_Pond_2022$nirK, Cor_Pond_2022$NH4, method = "spearman")
+cor.test(Cor_Pond_2022$nirK, Cor_Pond_2022$NO3, method = "spearman")
+cor.test(Cor_Pond_2022$nirK, Cor_Pond_2022$PO4, method = "spearman")
+cor.test(Cor_Pond_2022$nirK, Cor_Pond_2022$DO, method = "spearman")
+
+#norB
+cor.test(Cor_Pond_2022$norB, Cor_Pond_2022$NH4, method = "spearman")
+cor.test(Cor_Pond_2022$norB, Cor_Pond_2022$NO3, method = "spearman")
+cor.test(Cor_Pond_2022$norB, Cor_Pond_2022$PO4, method = "spearman")
+cor.test(Cor_Pond_2022$norB, Cor_Pond_2022$DO, method = "spearman")
+
+#nosZ
+cor.test(Cor_Pond_2022$nosZ, Cor_Pond_2022$NH4, method = "spearman")
+cor.test(Cor_Pond_2022$nosZ, Cor_Pond_2022$NO3, method = "spearman")
+cor.test(Cor_Pond_2022$nosZ, Cor_Pond_2022$PO4, method = "spearman")
+cor.test(Cor_Pond_2022$nosZ, Cor_Pond_2022$DO, method = "spearman")
+
+#ureA
+cor.test(Cor_Pond_2022$ureA, Cor_Pond_2022$NH4, method = "spearman")
+cor.test(Cor_Pond_2022$ureA, Cor_Pond_2022$NO3, method = "spearman")
+cor.test(Cor_Pond_2022$ureA, Cor_Pond_2022$PO4, method = "spearman")
+cor.test(Cor_Pond_2022$ureA, Cor_Pond_2022$DO, method = "spearman")
+
 ##Data are sorted
 Correlation_Matrix_Pond2022 <- read.csv("/Users/andrewpilat/Documents/Honors/Data/NCyc/Pond2022_Correlation_Matrix_Edited.csv")
 rownames(Correlation_Matrix_Pond2022) <- Correlation_Matrix_Pond2022$X
 Correlation_Matrix_Pond2022 <- Correlation_Matrix_Pond2022[,-1]
 
-Actual_Matrix_Pond2022 <- Correlation_Matrix_Pond2022[1:7,]
+Actual_Matrix_Pond2022 <- Correlation_Matrix_Pond2022[1:4,]
 
 
 Actual_Matrix_Pond2022 <- as.matrix(Actual_Matrix_Pond2022)
@@ -61,6 +198,7 @@ Genes_Metadata <- read.csv("/Users/andrewpilat/Documents/Honors/Data/NCyc/Genes_
 
 rownames(Genes_Metadata) <- Genes_Metadata$X
 Genes_Metadata <- Genes_Metadata[,-1]
+Genes_Metadata <- Genes_Metadata[,c(1,5:9,11)]
 
 Genes_Metadata <- as.matrix(Genes_Metadata)
 
@@ -79,6 +217,7 @@ boxplot_anno_Genes <- HeatmapAnnotation(
 Chemistry_Metadata <- read.csv("/Users/andrewpilat/Documents/Honors/Data/NCyc/Kokosing_Metadata.csv")
 rownames(Chemistry_Metadata) <- Chemistry_Metadata$X
 Chemistry_Metadata <- Chemistry_Metadata[,-1]
+Chemistry_Metadata <- Chemistry_Metadata[2:5,]
 
 Kokosing_Chemistry <- Chemistry_Metadata[,1:17]
 Pond2021_Chemistry <- Chemistry_Metadata[,18:90]
@@ -88,9 +227,9 @@ Kokosing_Chemistry[] <- lapply(Kokosing_Chemistry, as.numeric)
 Pond2021_Chemistry[] <- lapply(Pond2021_Chemistry, as.numeric)
 Pond2022_Chemistry[] <- lapply(Pond2022_Chemistry, as.numeric)
 
-Kokosing_Chemistry <- as.matrix(Kokosing_Chemistry[-1,])
-Pond2021_Chemistry <- as.matrix(Pond2021_Chemistry[-1,])
-Pond2022_Chemistry <- as.matrix(Pond2022_Chemistry[-1,])
+Kokosing_Chemistry <- as.matrix(Kokosing_Chemistry)
+Pond2021_Chemistry <- as.matrix(Pond2021_Chemistry)
+Pond2022_Chemistry <- as.matrix(Pond2022_Chemistry)
 
 Kokosing_annotation <- HeatmapAnnotation(which = "row", Koko_Meta = anno_boxplot(Kokosing_Chemistry, na.rm = TRUE, width = unit(3, "cm"),
   rotation = 45, axis = FALSE), annotation_name_gp = gpar(col = "white", fontsize = 0))
@@ -103,7 +242,7 @@ Pond2022_annotation <- HeatmapAnnotation(which = "row", Concentration = anno_box
 
 col_fun= colorRamp2(c(-1, 0, 1), c("blue", "#76d587", "#ffff00"))
 
-column_split <- c(rep(1,1), rep(2, 3), rep(3,1), rep(4, 4), rep(5, 1), rep(6,1))
+column_split <- c(rep(1,1), rep(2,1), rep(3, 4), rep(4,1))
 
 ht1 = Heatmap(Actual_Matrix_Kokosing, name = "Spearman", col = col_fun, row_title = "Kokosing River",
               row_order = rownames(Actual_Matrix_Kokosing), column_order = colnames(Actual_Matrix_Kokosing), row_names_side = "left",

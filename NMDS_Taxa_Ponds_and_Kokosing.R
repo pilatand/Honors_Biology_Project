@@ -30,6 +30,7 @@ MDS_2021 <- MDSrotate(MDS_2021, Relevant_Metadata_2021$temp)
 ##Fit the environmnetal variables
 MDS_2021_Env_Fit <- envfit(MDS_2021, Relevant_Metadata_2021, permutations = 999)
 
+help("envfit")
 
 ##Dataframe for ggplot. This one pulls the NMDS data
 site.scrs <- as.data.frame(scores(MDS_2021, display = "species")) #save NMDS results into dataframe
