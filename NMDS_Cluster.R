@@ -47,6 +47,7 @@ ggplot(Ncyc_NMDS_Run.sites, aes(x=NMDS1, y=NMDS2, size = 1, color = Clusters))+c
         axis.title = element_text(size = 18))
 dev.off()
 
+
 ####Genera#####
 Genera_Single_Sheet <- read.csv("/users/andrewpilat/Documents/Honors/Kraken Spreadsheets/Genera_for_NMDS.csv")
 rownames(Genera_Single_Sheet) <- Genera_Single_Sheet[,1]
@@ -106,4 +107,5 @@ ggplot(Ncyc_All_Genes, aes(x=NMDS1, y=NMDS2, size = 1, color = Locations))+coord
 dev.off()
 
 ##Didn't work##
+
 
