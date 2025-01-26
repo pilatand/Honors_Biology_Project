@@ -38,6 +38,9 @@ tapply(Master_NCYC$hzsA, Master_NCYC$Median_Name, median)
 ##Median for ureA
 tapply(Master_NCYC$ureA, Master_NCYC$Median_Name, median)
 
+##Median for nfrA
+tapply(Master_NCYC$nrfA, Master_NCYC$Median_Name, median)
+
 ##Read in the spreadsheet with the median values
 Heatmap_NCyc <- read.csv("/users/andrewpilat/Documents/Honors/Data/NCyc/Heatmap_NCyc.csv")
 Heatmap_NCyc <- Heatmap_NCyc[,-1]
@@ -71,7 +74,9 @@ wilcox.test(Master$nirK_Water, Master$nirK_Soil, alternative = "less", paired = 
 wilcox.test(Master$norB_Water, Master$norB_Soil, alternative = "less", paired = FALSE) ## p < 0.0001
 wilcox.test(Master$nosZ_Water, Soil$nosZ_Soil, alternative = "two.sided", paired = FALSE) ## p < 0.0001
 
+wilcox.test(Master$nirS_Soil, Master$nirK_Soil, alternative = "less", paired = FALSE)
 
+boxplot(Master$nirS_Soil, Master$nirK_Soil)
 
 
 wilcox.test(Master$hzsA_Water, Soil$hzsA_Soil, alternative = "greater", paired = FALSE)
@@ -84,6 +89,7 @@ help("pSDCFlig")
 kruskal.test(Master$nirS~Master$Median_Name) ## p < 0.0001
 
 pSDCFlig(x =Master$nirS, g=Master$Groups)
+
 
 
 
