@@ -24,9 +24,52 @@ help(scale_color_manual)
 cor.test(Flux_NCyc$logFlux~Flux_NCyc$norB, method = "spearman")
 ##Spearman test, S == 66.599, rho = 0.697, p-value = 0.01708
 
+
 lm <- lm(Flux_NCyc$logFlux~Flux_NCyc$norB)
 summary(lm)
 
 plot(lm$residuals~lm$fitted.values)
 qqplot(residuals)
 qqnorm(Flux_NCyc$logFlux)
+
+Flux_NCyc <- cbind(Flux_NCyc, Sites_Specific = c("Wetland", "Wetland", "Wetland", "Wetland", "Farm", 
+                                             "Wetland", "Farm", "Farm", "Wetland", "Farm", "Farm",
+                                             "Wetland", "Farm", "Wetland", "Wetland"))
+
+Flux_NCyc$logFlux <- log(Flux_NCyc$Flux_Rate)
+
+
+tiff("Audrey_Flux_Wetland_Farm.tiff", units = "in", width =8, height=5, res=300)
+ggplot(Flux_NCyc)+geom_point(aes(x= norB, y = logFlux, color = Sites_Specific), size = 3)+theme_classic()+
+  theme(axis.text = element_text(size = 16),
+        axis.title = element_text(size = 18))+xlim(95,500)+
+  labs(
+    x = "Relative norB Abundance",
+    y = expression("Log N2O Flux (µg hr"^-1 ~ "m"^-2 ~")"),
+    color = "Sites")+geom_smooth(aes(x= norB, y = logFlux), method = "lm", se = TRUE, color = "black")+
+  scale_color_manual(values = c("red", "blue"))
+dev.off()
+
+
+
+
+
+
+cor(Flux_NCyc$logFlux, Flux_NCyc$Nitrate, method = "spearman", use = "complete.obs")
+
+tiff("Flux_Versus_Nitrate.tiff", units = "in", width =8, height=5, res=300)
+ggplot(Flux_NCyc)+geom_point(aes(x= Nitrate, y = logFlux, color = Real_Names), size = 3)+theme_classic()+
+  theme(axis.text = element_text(size = 16),
+        axis.title = element_text(size = 18))+xlim(0,40)+
+  labs(
+    x = "Nitrate (mg/L)",
+    y = expression("Log N2O Flux (µg hr"^-1 ~ "m"^-2 ~")"),
+    color = "Sites")+geom_smooth(aes(x= Nitrate, y = logFlux), method = "lm", se = TRUE, color = "black", na.rm = TRUE)+
+  scale_color_manual(values = c("red", "#f9a30d", "blue", "#6b82da","#6bdab0", "darkgreen", "purple"))
+dev.off()
+
+lm <- lm(Flux_NCyc$logFlux ~ Flux_NCyc$Nitrate)
+summary(lm)
+
+plot(lm$residuals~lm$fitted.values)
+help("geom_smooth")

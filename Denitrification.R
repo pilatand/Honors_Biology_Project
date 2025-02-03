@@ -14,10 +14,8 @@ Denitrifier_Data2021  <- Denitrifier_Data2021[, c(3:7, 9:15)]
 rownames(Denitrifier_Data2022) <- Denitrifier_Data2022$Table.for.all.samples
 Denitrifier_Data2022 <- Denitrifier_Data2022[, c(3:7, 9:15)]
 
-
-
 rownames(Denitrifier_Wetlands) <- Denitrifier_Wetlands$Table.for.all.samples
-Denitrifier_Wetlands  <- Denitrifier_Wetlands[, c(3:7, 9:15)]
+Denitrifier_Wetlands <- Denitrifier_Wetlands[, c(3:7, 9, 11:15)]
 
 
 
@@ -119,7 +117,7 @@ cor.test(Denitrifier_Data2021$Flavobacterium,Denitrifier_Data2021$norB, use = "c
 cor.test(Denitrifier_Data2021$Flavobacterium,Denitrifier_Data2021$nosZ, use = "complete.obs", method = "spearman")
 cor.test(Denitrifier_Data2021$Flavobacterium,Denitrifier_Data2021$nirB, use = "complete.obs", method = "spearman")
 
-
+##Pond 2022
 
 Data2022_correlation <- cor(Denitrifier_Data2022, method = "spearman", use = "complete.obs")
 write.csv(Data2022_correlation, "/Users/andrewpilat/Documents/Honors/Data/Pond2022_Denitrifer_Correlation.csv")
@@ -168,6 +166,42 @@ cor.test(Denitrifier_Data2022$Flavobacterium,Denitrifier_Data2022$nirK,method = 
 cor.test(Denitrifier_Data2022$Flavobacterium,Denitrifier_Data2022$norB, use = "complete.obs", method = "spearman")
 cor.test(Denitrifier_Data2022$Flavobacterium,Denitrifier_Data2022$nosZ, use = "complete.obs", method = "spearman")
 cor.test(Denitrifier_Data2022$Flavobacterium,Denitrifier_Data2022$nirB, use = "complete.obs", method = "spearman")
+
+##Wetland Data
+
+Wetland_correlation <- cor(Denitrifier_Wetlands, method = "spearman", use = "complete.obs")
+write.csv(Wetland_correlation, "/Users/andrewpilat/Documents/Honors/Data/Wetland_Denitrifer_Correlation.csv")
+
+cor.test(Denitrifier_Wetlands$Bacillus,Denitrifier_Wetlands$Nitrate, method = "spearman", use = "complete.obs")
+cor.test(Denitrifier_Wetlands$Bacillus,Denitrifier_Wetlands$nirS,method = "spearman", use = "complete.obs")
+cor.test(Denitrifier_Wetlands$Bacillus,Denitrifier_Wetlands$nirK, use = "complete.obs", method = "spearman")
+cor.test(Denitrifier_Wetlands$Bacillus,Denitrifier_Wetlands$norB, use = "complete.obs", method = "spearman")
+cor.test(Denitrifier_Wetlands$Bacillus,Denitrifier_Wetlands$nosZ, use = "complete.obs", method = "spearman")
+cor.test(Denitrifier_Wetlands$Bacillus,Denitrifier_Wetlands$nirB, use = "complete.obs", method = "spearman")
+
+#Paracoccus
+cor.test(Denitrifier_Wetlands$Paracoccus,Denitrifier_Wetlands$Nitrate, method = "spearman", use = "complete.obs")
+cor.test(Denitrifier_Wetlands$Paracoccus,Denitrifier_Wetlands$nirS,method = "spearman")
+cor.test(Denitrifier_Wetlands$Paracoccus,Denitrifier_Wetlands$nirK,method = "spearman", use = "complete.obs")
+cor.test(Denitrifier_Wetlands$Paracoccus,Denitrifier_Wetlands$norB, use = "complete.obs", method = "spearman")
+cor.test(Denitrifier_Wetlands$Paracoccus,Denitrifier_Wetlands$nosZ, use = "complete.obs", method = "spearman")
+cor.test(Denitrifier_Wetlands$Paracoccus,Denitrifier_Wetlands$nirB, use = "complete.obs", method = "spearman")
+
+#Pseudomonas
+cor.test(Denitrifier_Wetlands$Pseudomonas,Denitrifier_Wetlands$Nitrate, method = "spearman", use = "complete.obs")
+cor.test(Denitrifier_Wetlands$Pseudomonas,Denitrifier_Wetlands$nirS,method = "spearman")
+cor.test(Denitrifier_Wetlands$Pseudomonas,Denitrifier_Wetlands$nirK,method = "spearman", use = "complete.obs")
+cor.test(Denitrifier_Wetlands$Pseudomonas,Denitrifier_Wetlands$norB, use = "complete.obs", method = "spearman")
+cor.test(Denitrifier_Wetlands$Pseudomonas,Denitrifier_Wetlands$nosZ, use = "complete.obs", method = "spearman")
+cor.test(Denitrifier_Wetlands$Pseudomonas,Denitrifier_Wetlands$nirB, use = "complete.obs", method = "spearman")
+
+#Bradyrhizobium
+cor.test(Denitrifier_Wetlands$Bradyrhizobium,Denitrifier_Wetlands$Nitrate, method = "spearman", use = "complete.obs")
+cor.test(Denitrifier_Wetlands$Bradyrhizobium,Denitrifier_Wetlands$nirS,method = "spearman")
+cor.test(Denitrifier_Wetlands$Bradyrhizobium,Denitrifier_Wetlands$nirK,method = "spearman", use = "complete.obs")
+cor.test(Denitrifier_Wetlands$Bradyrhizobium,Denitrifier_Wetlands$norB, use = "complete.obs", method = "spearman")
+cor.test(Denitrifier_Wetlands$Bradyrhizobium,Denitrifier_Wetlands$nosZ, use = "complete.obs", method = "spearman")
+cor.test(Denitrifier_Wetlands$Bradyrhizobium,Denitrifier_Wetlands$nirB, use = "complete.obs", method = "spearman")
 
 
 relative_abundance_Koksoing <- Denitrifier_Kokosing[, c(1:5)]
