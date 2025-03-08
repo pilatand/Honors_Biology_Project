@@ -242,7 +242,7 @@ Pond2022_annotation <- HeatmapAnnotation(which = "row", Concentration = anno_box
 
 col_fun= colorRamp2(c(-1, 0, 1), c("blue", "#76d587", "#ffff00"))
 
-column_split <- c(rep(1,1), rep(2,1), rep(3, 4), rep(4,1))
+column_split <- c(rep(1,1), rep(2, 5), rep(3,1))
 
 ht1 = Heatmap(Actual_Matrix_Kokosing, name = "Spearman", col = col_fun, row_title = "Kokosing River",
               row_order = rownames(Actual_Matrix_Kokosing), column_order = colnames(Actual_Matrix_Kokosing), row_names_side = "left",
@@ -266,3 +266,19 @@ draw(ht_list)
 dev.off()
 
 help("anno_boxplot")
+
+
+#####Cyanobacteria######
+Pond_Cyanobacteria <- read.csv("/Users/andrewpilat/Documents/Honors/Data/Cyanobacteria_Heatmap.csv")
+rownames(Pond_Cyanobacteria) <- Pond_Cyanobacteria$X
+Pond_Cyanobacteria <- Pond_Cyanobacteria[,-1]
+
+Actual_Pond_Cyanobacteria <- as.matrix(Pond_Cyanobacteria)
+column_split = c(1,2,3,4)
+
+tiff("Cyanobacteria_Correlation.tiff", units = "in", width =6, height=7, res=300)
+Heatmap(Actual_Pond_Cyanobacteria, name = "Spearman", col = col_fun, row_title = "Cyanobacteria Genera", column_title = "Environmental Factors", row_split = rownames(Actual_Pond_Cyanobacteria),
+        column_split = column_split, row_order = rownames(Actual_Pond_Cyanobacteria), column_order = colnames(Actual_Pond_Cyanobacteria), row_names_side = "left",
+        column_names_rot = 45, row_names_gp = gpar(fontsize = 12, fontface = "italic"), column_title_side = "top",
+        column_names_gp = gpar(fontsize = 12))
+dev.off()

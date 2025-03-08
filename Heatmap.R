@@ -51,10 +51,10 @@ Heatmap_matrix <- as.matrix(Heatmap_NCyc)
 
 col_fun= colorRamp2(c(0, 250, 600), c("blue", "#76d587", "#ffff00"))
 
-row_split <- c(rep(3,1), rep(4, 3), rep(1,1), rep(2, 4), rep(5, 1), rep(6,1))
+row_split <- c(rep(2,1), rep(3, 3), rep(1, 5), rep(4, 1), rep(5,1))
 column_split <- c(rep(1, 3), rep(4, 6), rep(5, 3), rep(8,1), rep(3, 1), rep(2, 4), rep(7, 1))
 
-tiff("Median_Heatmap_Remake.tiff", units = "in", width =20.5, height=9, res=300)
+tiff("Median_Heatmap_Remake.tiff", units = "in", width =16, height=9, res=300)
 Heatmap(Heatmap_matrix, col = col_fun, row_order = rownames(Heatmap_matrix), column_order = colnames(Heatmap_matrix), 
         name = "Rel. Abundance", column_names_rot = 45, row_split= row_split, column_split = column_split, column_title = c("Antarctic Lakes", "Ohio Ponds", "Ohio River", "Ohio Wetlands", "Agricultural Soil", "Compost", 
                                                                                                                              "Trail Soil"),
