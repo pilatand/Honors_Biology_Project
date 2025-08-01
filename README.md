@@ -1,4 +1,5 @@
-# Honors_Biology_Project
-This repository contains all code for my Honors Biology project.
+# Comparative Analysis of Denitrification and Other Nitrogen Cycle Genes in Diverse Environmental Microbiomes
 
-Code will be added following analysis.
+GitHub Repository by Andrew Pilat
+
+This repository contains all custom code for producing figures and calculating statistics in R.
