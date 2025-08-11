@@ -2,4 +2,4 @@
 
 GitHub Repository by Andrew Pilat
 
-This repository contains all custom code for producing figures and calculating statistics in R.
+This repository contains all custom code for figure production and publication-relevant statistics.
